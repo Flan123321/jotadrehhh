@@ -1,0 +1,66 @@
+// src/Hero.jsx (CORREGIDO - Sin filtros y menos opacidad)
+
+import React from 'react';
+
+function Hero() {
+  return (
+    <section 
+      className="
+        h-[80vh]               
+        md:h-[90vh]            
+        flex items-center justify-center text-center p-4 relative
+      "
+      style={{ 
+        // Asegúrate de que esta ruta sea 100% correcta
+        backgroundImage: 'url("/images/jotadreh-background.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center', // Centrado por defecto
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Capa oscura (Overlay) 
+          - Se quitaron los filtros 'filter brightness-90...'
+          - Se redujo la opacidad base
+      */}
+      <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
+      
+      {/* Contenido del Hero */}
+      <div className="z-20 relative text-white">
+        
+        {/* Logo PNG Grande */}
+        <img 
+          src="/images/jotadreh-logo.png" 
+          alt="JotaDreh Logo"
+          className="
+            w-3/4 max-w-xs md:max-w-md mx-auto mb-4 
+            drop-shadow-lg 
+            filter brightness-125 
+          "
+        />
+
+        <p className="
+          text-lg md:text-xl text-gray-300 mb-6 
+          font-light
+        ">
+          "Si llegamos" - Ya Disponible
+        </p>
+        <a 
+          href="#music" 
+          className="
+            bg-red-600              
+            text-white              
+            font-bold py-3 px-8 rounded-full
+            uppercase text-sm tracking-wider
+            hover:bg-red-700        
+            transition duration-300
+            shadow-md shadow-red-900/50 
+          "
+        >
+          Escuchar Ahora
+        </a>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;
