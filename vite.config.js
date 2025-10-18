@@ -3,12 +3,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// **IMPORTANTE:** Reemplaza 'NOMBRE-DEL-REPO' con el nombre EXACTO de tu repositorio de GitHub.
-const repoName = 'NOMBRE-DEL-REPO'; 
+// ¡ESTE NOMBRE DEBE COINCIDIR EXACTAMENTE CON EL NOMBRE DE TU REPOSITORIO!
+const repoName = 'jotadreh.github.io'; 
 
 export default defineConfig({
-  // ↓↓↓ AÑADE ESTA LÍNEA ↓↓↓
-  base: `/${repoName}/`,
-  // ↑↑↑ AÑADE ESTA LÍNEA ↑↑↑
+  base: `/${repoName}/`, // <--- Así se corrige la ruta en GitHub Pages
   plugins: [react()],
 })
