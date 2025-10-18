@@ -1,7 +1,14 @@
+// vite.config.js
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// **IMPORTANTE:** Reemplaza 'NOMBRE-DEL-REPO' con el nombre EXACTO de tu repositorio de GitHub.
+const repoName = 'NOMBRE-DEL-REPO'; 
+
 export default defineConfig({
-  plugins: [react(), "@tailwindcss/postcss"],
+  // ↓↓↓ AÑADE ESTA LÍNEA ↓↓↓
+  base: `/${repoName}/`,
+  // ↑↑↑ AÑADE ESTA LÍNEA ↑↑↑
+  plugins: [react()],
 })
