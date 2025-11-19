@@ -5,6 +5,7 @@ import React from 'react';
 function Hero() {
   return (
     <section 
+      id="home"
       className="
         h-[80vh]               
         md:h-[90vh]            
@@ -12,7 +13,7 @@ function Hero() {
       "
       style={{ 
         // Asegúrate de que esta ruta sea 100% correcta
-        backgroundImage: 'url("/images/jotadreh-background.jpg")',
+        backgroundImage: 'url("src/images/jotadreh-background.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center', // Centrado por defecto
         backgroundAttachment: 'fixed'
@@ -27,16 +28,14 @@ function Hero() {
       {/* Contenido del Hero */}
       <div className="z-20 relative text-white">
         
-        {/* Logo PNG Grande */}
-        <img 
-          src="/images/jotadreh-logo.png" 
-          alt="JotaDreh Logo"
-          className="
-            w-3/4 max-w-xs md:max-w-md mx-auto mb-4 
-            drop-shadow-lg 
-            filter brightness-125 
-          "
-        />
+        {/* Logo PNG Grande con animación y contorno LED */}
+        <div className="logo-wrap mx-auto mb-4">
+          <img
+            src="src/images/jotadreh-logo.png"
+            alt="JotaDreh Logo"
+            className="logo-img w-3/4 max-w-xs md:max-w-md mx-auto"
+          />
+        </div>
 
         <p className="
           text-lg md:text-xl text-gray-300 mb-6 
@@ -45,7 +44,8 @@ function Hero() {
           "Si llegamos" - Ya Disponible
         </p>
         <a 
-          href="#music" 
+          target='_blank'
+          href="https://youtu.be/i8ehgzq2ZjY?si=-OrtuKH6BqMVyTwi" 
           className="
             bg-red-600              
             text-white              

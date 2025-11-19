@@ -6,15 +6,16 @@ function Bio() {
   return (
     // Sección con imagen de fondo y overlay
     <section 
-      id="about" 
+      id="esencia" 
       className="py-24 px-4 relative overflow-hidden"
       style={{
         // --- ¡AQUÍ ESTÁ EL CAMBIO! ---
         // Ahora busca 'fondobio.png'
-        backgroundImage: 'url("/images/fondobio.png")', 
+        backgroundImage: 'url("src/images/fondobio.png")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed' 
+        backgroundAttachment: 'fixed',
+        scrollMarginTop: '5rem',
       }}
     >
       {/* Capa oscura (Overlay) para legibilidad */}

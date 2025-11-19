@@ -1,5 +1,3 @@
-// vite.config.js
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -7,6 +5,6 @@ import react from '@vitejs/plugin-react'
 const repoName = 'jotadreh.github.io'; 
 
 export default defineConfig({
-  base: `/${repoName}/`, // <--- Así se corrige la ruta en GitHub Pages
+  base: "/", // <--- Así se corrige la ruta en GitHub Pages
   plugins: [react()],
 })

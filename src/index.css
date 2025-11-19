@@ -2,3 +2,366 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Beckett';
+  src: url('/BECKETT_.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #E60023; /* Rojo Ferrari */
+  border-radius: 10px;
+}
+
+/* Animaciones y estilos personalizados para el logo */
+.logo-wrap {
+	/* centra y mantiene el contexto para pseudo-elementos */
+	display: inline-block;
+	position: relative;
+}
+
+.logo-img {
+	animation: fadeInUp 700ms ease forwards;
+	opacity: 0;
+	/* brillo + contorno que sigue la forma (drop-shadow usa el alpha de la imagen) */
+	filter: brightness(1.15) saturate(1.05)
+		drop-shadow(0 0 6px rgba(220,20,60,0.95))
+		drop-shadow(0 0 14px rgba(220,20,60,0.45))
+		drop-shadow(0 0 28px rgba(220,20,60,0.18));
+	transition: transform 300ms ease, filter 300ms ease;
+}
+
+/* Eliminamos el box-shadow del contenedor (provocaba un borde rectangular)
+	 y en su lugar usamos drop-shadow en la propia imagen para que el borde
+	 siga las letras dentro del PNG. */
+
+.logo-wrap:hover .logo-img {
+	transform: translateY(-6px) scale(1.02);
+}
+
+/* Keyframes */
+@keyframes fadeInUp {
+	0% { opacity: 0; transform: translateY(8px); }
+	60% { opacity: 1; transform: translateY(-4px); }
+	100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ledPulse {
+	0% { box-shadow: 0 0 4px 2px rgba(220,20,60,0.12); }
+	50% { box-shadow: 0 0 18px 6px rgba(220,20,60,0.28); }
+	100% { box-shadow: 0 0 6px 3px rgba(220,20,60,0.14); }
+}
+
+/* Pequeño efecto de parpadeo aleatorio para simular LED */
+.logo-wrap::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 60%;
+	height: 60%;
+	border-radius: 6px;
+	z-index: -2;
+	background: radial-gradient(circle at 30% 20%, rgba(255,80,95,0.12), transparent 25%);
+	filter: blur(6px);
+	animation: ledFlicker 3.7s infinite;
+	pointer-events: none;
+}
+
+@keyframes ledFlicker {
+	0%, 100% { opacity: 0.9; }
+	3% { opacity: 0.6; }
+	5% { opacity: 0.95; }
+	10% { opacity: 0.5; }
+	25% { opacity: 0.85; }
+	50% { opacity: 0.7; }
+}
+
+/* Navbar link tint and active styles */
+.nav-link {
+	position: relative;
+	display: inline-block;
+}
+
+/* subtle neutral tint on hover (no red) */
+.nav-link::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+	opacity: 0;
+	transition: opacity 220ms ease, transform 220ms ease;
+	transform: translateY(2px);
+	pointer-events: none;
+	border-radius: 6px;
+}
+
+.nav-link:hover::before,
+.nav-link:focus-visible::before {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.nav-link:active, .nav-link[aria-current="page"] {
+	/* Active link: white text, white underline (controlled by .underline-bar) */
+	color: #ffffff;
+	transform: translateY(0);
+}
+
+.nav-link:focus-visible {
+	outline: 2px solid rgba(255,107,107,0.18);
+	outline-offset: 4px;
+}
+
+.underline-bar { display:block }
+
+/* Paint sweep animation */
+/* remove paint-sweep persistent style - hover tint handled above */
+@keyframes paintSweep {
+	0% { transform: translateX(-100%); opacity: 1 }
+	60% { transform: translateX(10%); opacity: 1 }
+	100% { transform: translateX(100%); opacity: 0 }
+}
+
+/* Shake on hover */
+@keyframes shake {
+	0% { transform: translateX(0) }
+	20% { transform: translateX(-4px) }
+	40% { transform: translateX(3px) }
+	60% { transform: translateX(-2px) }
+	80% { transform: translateX(1px) }
+	100% { transform: translateX(0) }
+}
+
+.nav-link:hover {
+	animation: shake 350ms ease-in-out;
+}
+
+/* If the link is active (aria-current) give the paint sweep background persistently */
+.nav-link[aria-current="page"]::before {
+  /* keep the tint background subtle even when active */
+  opacity: 0.18;
+  transform: translateY(0);
+}
+
+/* Make the underline visible for active item (white) */
+.nav-link[aria-current="page"] .underline-bar {
+  width: 100% !important;
+  background: #ffffff;
+}
+
+/* Auto color pulse: alterna color entre blanco y rojo */
+@keyframes navPulse {
+  0% { color: #ffffff; }
+  50% { color: #ff6b6b; }
+  100% { color: #ffffff; }
+}
+
+.nav-link.auto-pulse {
+  animation: navPulse 3s ease-in-out infinite;
+}
+
+/* Pausa la animación en hover/focus y no fuerza color rojo cuando está pausada; si está activa, mantener blanco */
+.nav-link.auto-pulse:hover,
+.nav-link.auto-pulse:focus-visible {
+  animation-play-state: paused;
+}
+
+.nav-link.auto-pulse[aria-current="page"] {
+  animation-play-state: paused;
+  color: #ffffff !important;
+}
+
+/* RoadMap line + spark styles */
+.road-line { display: inline-block; position: relative; }
+.road-line .line-fill {
+	background: linear-gradient(180deg, #ff7b7b, #ff2b2b 60%);
+	transform-origin: top;
+	transform: scaleY(0);
+}
+.road-line .line-fill::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+/* Spark tip: small glowing fire that flickers and emits tiny particles */
+.spark {
+	position: absolute;
+	left: 50%;
+	bottom: -8px; /* sits just outside the bottom of the line */
+	width: 14px;
+	height: 14px;
+	transform: translateX(-50%);
+	border-radius: 50%;
+	background: radial-gradient(circle at 40% 35%, #fff3b0 0%, #ffcc33 20%, #ff5b2e 55%, transparent 70%);
+	box-shadow: 0 0 12px 4px rgba(255,90,40,0.35), 0 0 6px 2px rgba(255,200,80,0.18);
+	animation: sparkFlicker 900ms infinite ease-in-out;
+}
+
+/* show spark when filled */
+.road-line .line-fill.filled { transform: scaleY(1); }
+.spark.hidden { opacity: 0; pointer-events: none; transform: translateY(0) scale(0.8) }
+.spark.visible { opacity: 1; pointer-events: auto; }
+
+/* Central roadmap specific styles */
+.roadmap-central { width: 6px; }
+.central-base { border-radius: 6px; }
+.central-fill { transition: transform 700ms cubic-bezier(.22,1,.36,1); border-radius: 6px; }
+
+/* Central spark - more realistic */
+.central-spark { width: 18px; height: 18px; pointer-events: none; margin-left: -9px; z-index: 20; }
+.central-spark .spark-core {
+	width: 14px; height: 14px; border-radius: 50%; margin: 0 auto;
+	background: radial-gradient(circle at 35% 30%, #fffdf0 0%, #ffd36b 18%, #ff8a3a 50%, rgba(255,80,40,0.0) 75%);
+	box-shadow: 0 0 12px 4px rgba(255,140,60,0.25), 0 0 6px 2px rgba(255,80,30,0.18);
+	transform-origin: center;
+	animation: corePulse 900ms infinite ease-in-out;
+}
+
+.central-spark .spark-particles { position: absolute; inset: 0; }
+.central-spark .spark-particle {
+	position: absolute; width: 6px; height: 6px; border-radius: 50%;
+	background: radial-gradient(circle, #ffd9a8 0%, #ff6b3a 60%);
+	opacity: 0; transform: translateY(0) scale(0.8);
+}
+
+/* Dynamic particles spawned by JS: smoother rise and slight rotation */
+.dynamic-particle {
+	position: absolute;
+	border-radius: 50%;
+	pointer-events: none;
+	will-change: transform, opacity;
+}
+
+/* small helper for GPU-accelerated fade-out motion used by particles */
+.particle-anim {
+	animation: particleFloat 900ms forwards ease-out;
+}
+
+@keyframes particleFloat {
+	0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1 }
+	60% { transform: translateY(-28px) scale(0.7) rotate(12deg); opacity: 0.6 }
+	100% { transform: translateY(-56px) scale(0.45) rotate(18deg); opacity: 0 }
+}
+
+/* Burst SVG styling (mecha) */
+.burst-svg { display: block; margin: 0 auto; filter: drop-shadow(0 6px 10px rgba(225,29,35,0.18)) blur(0px); transform-origin: center; }
+.central-spark .burst-svg { transition: transform 380ms ease, opacity 260ms ease; }
+
+/* slightly enlarge/flicker when visible */
+.central-spark.visible .burst-svg { transform: scale(1.06) rotate(-4deg); }
+
+/* particle container inside spark */
+.central-spark .spark-particles { position: absolute; inset: 0; pointer-events: none; }
+.dynamic-particle { box-shadow: 0 0 10px rgba(255,120,60,0.28); border-radius: 50%; }
+
+/* individual particle motions (staggered) */
+@keyframes particleMove1 { 0% { transform: translate(0,0) scale(1); opacity: 0.9 } 60% { transform: translate(-18px,-26px) scale(0.6); opacity: 0.4 } 100% { transform: translate(-26px,-40px) scale(0.4); opacity: 0 } }
+@keyframes particleMove2 { 0% { transform: translate(0,0) scale(1); opacity: 0.9 } 60% { transform: translate(12px,-20px) scale(0.6); opacity: 0.45 } 100% { transform: translate(20px,-36px) scale(0.35); opacity: 0 } }
+@keyframes particleMove3 { 0% { transform: translate(0,0) scale(1); opacity: 0.9 } 60% { transform: translate(-6px,-18px) scale(0.6); opacity: 0.45 } 100% { transform: translate(-10px,-30px) scale(0.4); opacity: 0 } }
+@keyframes particleMove4 { 0% { transform: translate(0,0) scale(1); opacity: 0.9 } 60% { transform: translate(10px,-30px) scale(0.6); opacity: 0.4 } 100% { transform: translate(22px,-46px) scale(0.35); opacity: 0 } }
+@keyframes particleMove5 { 0% { transform: translate(0,0) scale(1); opacity: 0.9 } 60% { transform: translate(-12px,-28px) scale(0.6); opacity: 0.45 } 100% { transform: translate(-20px,-44px) scale(0.4); opacity: 0 } }
+@keyframes particleMove6 { 0% { transform: translate(0,0) scale(1); opacity: 0.9 } 60% { transform: translate(6px,-18px) scale(0.6); opacity: 0.45 } 100% { transform: translate(14px,-34px) scale(0.35); opacity: 0 } }
+
+.central-spark.visible .spark-particle { opacity: 1; }
+.central-spark.visible .particle-1 { left: 2px; top: 6px; animation: particleMove1 900ms forwards; animation-delay: 0ms; }
+.central-spark.visible .particle-2 { left: 8px; top: 2px; animation: particleMove2 1000ms forwards; animation-delay: 80ms; }
+.central-spark.visible .particle-3 { left: 2px; top: 2px; animation: particleMove3 950ms forwards; animation-delay: 40ms; }
+.central-spark.visible .particle-4 { left: 12px; top: 6px; animation: particleMove4 1100ms forwards; animation-delay: 120ms; }
+.central-spark.visible .particle-5 { left: -2px; top: 8px; animation: particleMove5 1000ms forwards; animation-delay: 60ms; }
+.central-spark.visible .particle-6 { left: 6px; top: 10px; animation: particleMove6 980ms forwards; animation-delay: 30ms; }
+
+@keyframes corePulse { 0% { transform: scale(1) } 50% { transform: scale(1.07) } 100% { transform: scale(1) } }
+
+@keyframes sparkFlicker {
+	0% { transform: translateX(-50%) scale(1); opacity: 1; filter: blur(0px); }
+	30% { transform: translateX(-48%) scale(1.12); opacity: 0.95; filter: blur(1px); }
+	60% { transform: translateX(-52%) scale(0.92); opacity: 0.8; filter: blur(0.6px); }
+	100% { transform: translateX(-50%) scale(1); opacity: 1; filter: blur(0px); }
+}
+
+/* tiny sparks particle pseudo-elements (CSS-only) */
+.spark::before, .spark::after {
+	content: '';
+	position: absolute;
+	width: 4px; height: 4px; border-radius: 50%;
+	background: radial-gradient(circle, #ffd58a 0%, #ff6b3a 60%);
+	opacity: 0.9;
+}
+.spark::before { left: -8px; top: 2px; animation: particleRise 1200ms infinite ease-in; }
+.spark::after  { right: -8px; top: 0px; animation: particleRise 1100ms infinite ease-in reverse; }
+
+@keyframes particleRise {
+	0% { transform: translateY(0) scale(1); opacity: 0.9 }
+	60% { transform: translateY(-14px) scale(0.7); opacity: 0.45 }
+	100% { transform: translateY(-22px) scale(0.5); opacity: 0 }
+}
+
+/* Central roadmap styles */
+.roadmap-central { width: 14px; }
+.roadmap-central .central-base {
+	background: linear-gradient(180deg, #2b2b2b, #1f1f1f);
+}
+.roadmap-central .central-fill {
+	transform-origin: top;
+	transform: scaleY(0);
+	transition: transform 220ms linear;
+	box-shadow: 0 0 18px 4px rgba(255,60,60,0.18);
+}
+.central-spark {
+	width: 18px;
+	height: 26px;
+	margin-left: -9px;
+	border-radius: 8px;
+	background: radial-gradient(circle at 30% 25%, #fff8d0 0%, #ffd05a 20%, #ff7a3a 50%, rgba(255,60,40,0.0) 70%);
+	box-shadow: 0 0 18px 6px rgba(255,120,60,0.22), 0 0 6px 2px rgba(255,200,80,0.12);
+	transform: translateY(-50%);
+	animation: centralSparkFlicker 900ms infinite ease-in-out;
+}
+/* Hide legacy circular spark elements so only the new SVG burst is visible */
+.central-spark {
+  background: transparent !important;
+  width: 46px !important;
+  height: 46px !important;
+}
+.central-spark .spark-core, .spark, .spark-particle { display: none !important; }
+
+@keyframes centralSparkFlicker {
+	0% { transform: translateY(-50%) scaleY(1) scaleX(1); opacity: 1 }
+	30% { transform: translateY(-48%) scaleY(1.12) scaleX(1.02); opacity: 0.95 }
+	60% { transform: translateY(-52%) scaleY(0.9) scaleX(0.95); opacity: 0.75 }
+	100% { transform: translateY(-50%) scaleY(1) scaleX(1); opacity: 1 }
+}
+
+/* particles for central spark - CSS-only small orbs */
+.central-spark::before, .central-spark::after {
+	content: '';
+	position: absolute;
+	width: 6px; height: 6px; border-radius: 50%;
+	background: radial-gradient(circle, #ffd58a 0%, #ff6b3a 60%);
+	opacity: 0.9;
+}
+.central-spark::before { left: -10px; top: 4px; animation: centralParticle 1200ms infinite linear; }
+.central-spark::after  { right: -10px; top: 2px; animation: centralParticle 1000ms infinite linear reverse; }
+
+@keyframes centralParticle {
+	0% { transform: translateY(0) scale(1); opacity: 0.9 }
+	50% { transform: translateY(-18px) scale(0.6); opacity: 0.4 }
+	100% { transform: translateY(-28px) scale(0.4); opacity: 0 }
+}
+
+/* hide central visuals on small screens */
+@media (max-width: 767px) {
+	.roadmap-central { display: none; }
+}
+
+

@@ -23,13 +23,15 @@ function TrendCTA() {
   return (
     // Sección con IMAGEN DE FONDO
     <section 
+      id="trend"
       className="py-24 px-4 relative overflow-hidden"
       style={{
-        // Asumimos que la imagen está en 'public/images/fondotrend.jpg'
-        backgroundImage: 'url("/images/fondotrend.jpg")',
+        
+        backgroundImage: 'url("src/images/fondotrend.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed' // Efecto parallax
+        backgroundAttachment: 'fixed', // Efecto parallax
+        scrollMarginTop: '5rem',
       }}
     >
       
@@ -72,7 +74,7 @@ function TrendCTA() {
 
         {/* --- Botón CTA (sin cambios, pero ahora sobre z-10) --- */}
         <a 
-          href="#" // <-- ¡IMPORTANTE! Link al sonido de TikTok
+          href="https://www.tiktok.com/music/sonido-original-7545005022053649158?is_from_webapp=1&sender_device=pc" // <-- ¡IMPORTANTE! Link al sonido de TikTok
           target="_blank" 
           rel="noopener noreferrer"
           className="

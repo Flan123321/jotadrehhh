@@ -1,5 +1,3 @@
-// tailwind.config.js (CORREGIDO)
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [

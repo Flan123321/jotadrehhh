@@ -9,11 +9,12 @@ function Music() {
       id="music" 
       className="py-24 px-4 relative overflow-hidden"
       style={{
-        // Asumimos que la imagen está en 'public/images/mallas.jpg'
+        
         backgroundImage: 'url("/images/mallas.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed' // Efecto parallax
+        backgroundAttachment: 'fixed', // Efecto parallax
+        scrollMarginTop: '5rem',
       }}
     >
       
