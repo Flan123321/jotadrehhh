@@ -10,7 +10,7 @@ function Hero() {
         h-[80vh]               
         md:h-[90vh]            
         flex items-center justify-center text-center p-4 relative
-          bg-cover bg-top md:bg-center // <-- APLICAMOS bg-top para mejor visualización en móvil
+          bg-cover bg-center // <-- APLICAMOS bg-top para mejor visualización en móvil
       "
       style={{ 
         // Dejamos solo las propiedades de URL y attachment
