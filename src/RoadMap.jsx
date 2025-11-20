@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react'; // <-- Importamos useEffect
 
 // --- IMPORTAR IMÁGENES (Tus rutas) ---
 import imgLasGanas from '/images/roadmap/lasganas.png';
-import imgSola from 'images/roadmap/solaydisfrutando.png';
-import imgDebut from 'images/roadmap/1.png';
-import imgSofo from 'images/jotadreh-background.jpg'; 
-import bgImage from 'images/roadmap/DSC05211.jpg'; 
-import arrowRightIcon from 'images/icons/arrow-jotadreh-red-right.png'; 
-import arrowLeftIcon from 'images/icons/arrow-jotadreh-red-left.png';   
+import imgSola from '/images/roadmap/solaydisfrutando.png';
+import imgDebut from '/images/roadmap/1.png';
+import imgSofo from '/images/jotadreh-background.jpg'; 
+import bgImage from '/images/roadmap/DSC05211.jpg'; 
+import arrowRightIcon from '/images/icons/arrow-jotadreh-red-right.png'; 
+import arrowLeftIcon from '/images/icons/arrow-jotadreh-red-left.png';   
 
 // --- Tus Hitos (Sin cambios) ---
 const milestones = [
