@@ -1,4 +1,4 @@
-// src/Hero.jsx (CORREGIDO - Ajuste de posición de fondo para móvil)
+// src/Hero.jsx (CORRECCIÓN FINAL COMPLETA: Usando <img> para controlar el zoom/recorte)
 
 import React from 'react';
 
@@ -7,21 +7,26 @@ function Hero() {
     <section 
       id="home"
       className="
-        min-h-[700px] h-[80vh] // <-- Usamos min-h para forzar un tamaño mínimo visible
+        h-[80vh]               
         md:h-[90vh]            
         flex items-center justify-center text-center p-4 relative
-          bg-cover bg-center 
       "
-      style={{ 
-        // Dejamos solo las propiedades de URL y attachment
-        backgroundImage: 'url("/images/jotadreh-background.jpg")',
-        backgroundAttachment: 'fixed'
-      }}
+      // ELIMINAMOS TODOS LOS ESTILOS CSS BACKGROUND: backgroundImage, backgroundAttachment, etc.
     >
-      {/* Capa oscura (Overlay) */}
+      
+      {/* ¡NUEVO! IMAGEN <img> COMO FONDO, USANDO object-cover */}
+      {/* Esto nos da un control preciso con object-position */}
+      <img
+          src="/images/jotadreh-background.jpg" // Ruta absoluta que ya funciona
+          alt="Fondo del Hero"
+          className="absolute inset-0 w-full h-full object-cover object-center" 
+          style={{ backgroundAttachment: 'fixed' }} // Mantenemos el efecto parallax
+      />
+
+      {/* Capa oscura (Overlay) - Ahora con z-10 para quedar EN MEDIO de la imagen y el contenido */}
       <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
       
-      {/* Contenido del Hero */}
+      {/* Contenido del Hero - Ahora con z-20 para quedar POR ENCIMA de la imagen y el overlay */}
       <div className="z-20 relative text-white">
         
         {/* Logo PNG Grande con animación y contorno LED */}
