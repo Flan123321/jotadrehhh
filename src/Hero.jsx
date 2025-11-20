@@ -31,7 +31,7 @@ function Hero() {
         {/* Logo PNG Grande con animación y contorno LED */}
         <div className="logo-wrap mx-auto mb-4">
           <img
-            src="src/images/jotadreh-logo.png"
+            src="/images/jotadreh-logo.png"
             alt="JotaDreh Logo"
             className="logo-img w-3/4 max-w-xs md:max-w-md mx-auto"
           />
