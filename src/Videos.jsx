@@ -1,4 +1,4 @@
-// src/Videos.jsx (CORREGIDO - Ajuste de posición de fondo para móvil)
+// src/Videos.jsx (CORREGIDO: Usando <img> para controlar el zoom/recorte)
 
 import React from 'react';
 
@@ -28,12 +28,15 @@ function Videos() {
       className="relative py-24 px-4 sm:px-6 lg:px-8 text-white overflow-hidden" 
       style={{ scrollMarginTop: '5rem' }}
     >
-      {/* Imagen de Fondo */}
-      <div 
-        // MODIFICACIÓN: bg-top para móvil, sm:bg-center para escritorio
-        className="absolute inset-0 bg-cover bg-top sm:bg-center" 
-        style={{ backgroundImage: "url('/images/roadmap/DSC05211.jpg')" }}
-      ></div>
+      
+      {/* ¡NUEVO! IMAGEN <img> COMO FONDO */}
+      <img
+          src="/images/roadmap/DSC05211.jpg" // Ruta absoluta que funciona
+          alt="Fondo de Videos"
+          className="absolute inset-0 w-full h-full object-cover object-center" 
+          // Ya que esta sección no tiene backgroundAttachment: fixed, no lo incluimos
+      />
+      
       {/* Overlay Oscuro para mejorar la legibilidad del texto */}
       <div className="absolute inset-0 bg-black opacity-75"></div>
       
@@ -48,7 +51,7 @@ function Videos() {
           "Los videos de la joven promesa"
         </p>
 
-        {/* Grid de Videos */}
+        {/* Grid de Videos (sin cambios) */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {videoEmbeds.map((video, index) => (
             <div 

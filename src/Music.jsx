@@ -1,27 +1,32 @@
-// src/Music.jsx (CORREGIDO - Ajuste de posición de fondo para móvil)
+// src/Music.jsx (CORRECCIÓN FINAL COMPLETA: Usando <img> para mallas.jpg)
 
 import React from 'react';
 
 function Music() {
   return (
-    // Sección con 'relative', 'overflow-hidden' y ahora con IMAGEN DE FONDO
     <section 
       id="music" 
-      className="py-24 px-4 relative overflow-hidden bg-cover bg-top sm:bg-center" // <-- APLICAMOS bg-top para móvil
+      className="py-24 px-4 relative overflow-hidden" // Eliminamos bg-cover/bg-center del section
       style={{
-        // Dejamos solo las propiedades de URL y attachment
-        backgroundImage: 'url("/images/mallas.jpg")',
-        backgroundAttachment: 'fixed', // Efecto parallax
         scrollMarginTop: '5rem',
+        // Eliminamos estilos CSS de background
       }}
     >
       
-      {/* Capa oscura (Overlay) */}
+      {/* ¡NUEVO! IMAGEN <img> COMO FONDO */}
+      <img
+          src="/images/mallas.jpg" // Ruta absoluta que ya funciona
+          alt="Fondo de Mallas"
+          className="absolute inset-0 w-full h-full object-cover object-center" 
+          style={{ backgroundAttachment: 'fixed' }} // Efecto parallax
+      />
+      
+      {/* Capa oscura (Overlay) - Ahora con z-0 para que la imagen quede justo detrás */}
       <div 
         className="absolute inset-0 bg-black bg-opacity-70 z-0"
       ></div>
       
-      {/* Contenedor principal */}
+      {/* Contenedor principal - Ahora con z-10 para quedar por encima de todo */}
       <div className="container mx-auto text-center relative z-10">
         <h3 className="
           text-4xl font-extrabold mb-12 uppercase 
