@@ -90,14 +90,15 @@ function Roadmap() {
   return (
     <section
       id="bio"
-      // --- AJUSTE: Más altura en móvil (90vh) ---
-      className="relative w-full h-[90vh] sm:h-[80vh] bg-black text-white flex flex-col items-center justify-center overflow-hidden"
+      // AÑADIDO: bg-cover, bg-top (Móvil) y sm:bg-center (Escritorio)
+      className="relative w-full h-[90vh] sm:h-[80vh] bg-black text-white flex flex-col items-center justify-center overflow-hidden 
+                 bg-cover bg-top sm:bg-center" 
       style={{
         backgroundImage: `url(${bgImage})`, 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        // QUITAMOS: backgroundSize y backgroundPosition, ya están en el className
       }}
     >
+
       {/* CAPA DE OSCURIDAD SOBRE EL FONDO */}
       <div className="absolute inset-0 bg-black/80 z-0" />
       
