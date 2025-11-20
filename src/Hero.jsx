@@ -7,10 +7,10 @@ function Hero() {
     <section 
       id="home"
       className="
-        h-[80vh]               
+        min-h-[700px] h-[80vh] // <-- Usamos min-h para forzar un tamaño mínimo visible
         md:h-[90vh]            
         flex items-center justify-center text-center p-4 relative
-          bg-cover bg-center // <-- APLICAMOS bg-top para mejor visualización en móvil
+          bg-cover bg-center 
       "
       style={{ 
         // Dejamos solo las propiedades de URL y attachment
