@@ -13,7 +13,7 @@ function Hero() {
       "
       style={{ 
         // Asegúrate de que esta ruta sea 100% correcta
-        backgroundImage: 'url("src/images/jotadreh-background.jpg")',
+        backgroundImage: 'url("/images/jotadreh-background.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center', // Centrado por defecto
         backgroundAttachment: 'fixed'

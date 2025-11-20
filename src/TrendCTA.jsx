@@ -27,7 +27,7 @@ function TrendCTA() {
       className="py-24 px-4 relative overflow-hidden"
       style={{
         
-        backgroundImage: 'url("src/images/fondotrend.jpg")',
+        backgroundImage: 'url("/images/fondotrend.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed', // Efecto parallax

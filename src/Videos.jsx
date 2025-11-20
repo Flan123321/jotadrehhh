@@ -30,7 +30,7 @@ function Videos() {
       {/* Imagen de Fondo */}
       <div 
         className="absolute inset-0 bg-cover bg-center" 
-        style={{ backgroundImage: "url('src/images/roadmap/DSC05211.jpg')" }}
+        style={{ backgroundImage: "url('/images/roadmap/DSC05211.jpg')" }}
       ></div>
       {/* Overlay Oscuro para mejorar la legibilidad del texto */}
       <div className="absolute inset-0 bg-black opacity-75"></div> {/* Puedes ajustar la opacidad aquí */}

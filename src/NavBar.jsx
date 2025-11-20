@@ -129,7 +129,7 @@ function Navbar() {
             la normalidad en desktop.
         */}
         <img 
-          src="src/images/jotadreh-logo-header.png" // Tu logo recortado
+          src="/images/jotadreh-logo-header.png" // Tu logo recortado
           alt="JotaDreh Logo"
           className="
             h-12 w-auto filter brightness-150

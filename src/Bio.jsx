@@ -11,7 +11,7 @@ function Bio() {
       style={{
         // --- ¡AQUÍ ESTÁ EL CAMBIO! ---
         // Ahora busca 'fondobio.png'
-        backgroundImage: 'url("src/images/fondobio.png")', 
+        backgroundImage: 'url("/images/fondobio.png")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

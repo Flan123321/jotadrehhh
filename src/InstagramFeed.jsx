@@ -53,7 +53,7 @@
         id="feed"
         className="relative py-20 px-4 bg-zinc-900"
         style={{ scrollMarginTop: '5rem',
-          backgroundImage: 'url("src/images/stars2.jpg")',
+          backgroundImage: 'url("/images/stars2.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
